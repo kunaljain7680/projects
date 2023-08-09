@@ -1,0 +1,140 @@
+/* An img tag is good if you need to resize the image. E.g. if the original image is 100px by 100 px, and you want it to be 80px by 80px, you can set the CSS width and height of the img tag. I don't know of any good way to do this using background-image. EDIT: This can now also be done with a background-image, using the background-size CSS3 attribute.
+
+Using background-image is good when you need to dynamically switch between sprites. E.g. if you have a button image, and you want a separate image displayed when the cursor is hovering over the element, you can use a background image containing both the normal and hover sprites, and dynamically change the background-position. */
+
+*{
+    margin:0;
+    padding:0;
+
+    box-sizing: border-box;
+}
+
+#wrapper{
+    height:100vh; /*  we want that sari website wrapper k andar so that's why height:100vh*/
+
+    overflow-x:hidden;/* to stop scrolling from right side  */
+    /* overflow-y:auto; */
+    perspective:10px; /* to on z-axis  */
+}
+
+.container{
+
+    /* 100 % acc to parent ( i.e pura viewport */
+    height:100%;
+
+    position:relative;
+
+    /* relative given so as both images background,foreground(flex-items) will have absolute position for overlapping */
+
+    /* display:flex and flex ki properties adventure text ko center karnr k lie */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    /* transform-style se 2d game chlegi images chipkegi and no 3d effect */
+
+    transform-style:preserve-3d;
+
+    /* z-index(default 0) for overlapping konsi layer kiske upar eg: 4images and kon kiske upar */
+    z-index:-1;
+}
+
+.background{
+    transform:translateZ(-40px) scale(5);
+
+}
+
+.foreground{
+    transform:translateZ(-20px) scale(3);
+    /* position:absolute; */
+} 
+
+.background, .foreground{
+    position:absolute;
+
+    /* images height set as 100% as full viewport needed */
+    height:100%;
+    width:100%;
+    z-index:-1; 
+
+    /* z-index negative means upar , if positive number means niche ,jo h1 h vo niche hi h bs vo layers ke niche chup gya h */
+    
+
+    /* object-fit: it is used to specify how an img or video should be resized to fit its container ,cover fit image in container*/
+    object-fit: cover;
+}
+
+h1{
+    position:absolute;
+
+    /*  jo values h vo pehle se hi designer dega to set website */
+    top:5rem; 
+    letter-spacing:4px;
+    font-size:10rem;
+    color:white;
+    text-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+ 
+section{
+    background-color: rgb(45,45,45);
+    color:white;
+    padding:5rem 0;
+}
+
+.bg{
+
+    /* set relative postion as image aur paragraph overlap kar rhe hn */
+    position:relative;
+
+    /* for puri image  */
+    width:100%;
+
+    /* background-attatchment: fixed so image vahi par rahegi and baki chezen uske upar scroll karegi,nahi to image bhi sath me scroo karegi  */
+    background-attachment: fixed;
+    height:500px;
+
+    /* background-size : cover se  sara k sara part cover like object-fit:cover */
+
+    /* background-position:center se hmari image screen ki center me positioned i.e image ki agar resolution zyada badi h uskhmare hisab se viewport ko cover kr pae jo width and height hm btenge*/
+    background-size: cover;
+    background-position: center;
+}
+
+/* headings overlap on images
+63
+ */
+
+.desc{
+    position:absolute;
+    background-color:white;
+    padding:0.5rem 2.5 rem;
+    top:50%;
+    left:50%;
+    transform:translateX(-50%) translateY(50%);
+    color:black;
+    font-size:3.5rem;
+    font-weight:600px;
+    
+}
+.bg1{
+    background-image: url(images/sport-1.jpg);
+}
+
+.bg2{
+    background-image: url(images/sport-2.jpg);
+}
+
+.bg3{
+    background-image: url(images/sport-3.jpg);
+}
+
+.secHeading{
+    font-size:5rem;
+    padding:0 10rem;
+}
+
+.text{
+    font-size:1.5rem;
+    padding:0 10rem;
+    margin:5rem 0;
+}
