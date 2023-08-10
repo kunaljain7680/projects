@@ -1,0 +1,108 @@
+
+/* * always set these properties for universal selector (*) */ 
+*{
+    margin:0;;
+    padding:0;
+    box-sizing: border-box;
+}
+
+#wrapper{
+
+    /* always set these properties for wrapper */
+
+    height:100vh;
+    overflow-x:hidden;
+    overflow-y: auto;
+}
+
+.container{
+    height:100%;
+    max-width: 1200px;
+
+    /* margin: 0 auto se content  */
+
+    margin:0 auto;
+
+    padding:20px;
+}
+
+.container h1{
+    margin:20px 100px;
+    text-align:center;
+    margin-bottom:20px;
+    font-size:3rem;
+}
+
+.gallery{
+    display:flex;
+    /* flex wrap : wrap se width of images maintain i.e agar vo pure nahi a skte to vo nichli line me a skte hn*/
+    flex-wrap:wrap; 
+    justify-content: space-between;
+
+}
+
+.card{
+    width:32%;   /* indirectly mentioned out of 100% 3 cards of 23% ech comes */
+    /* 4% left for space */
+
+    position:relative;
+
+    /* images pe text overlap so use postion : absolute there and it's parent is this card so that' why position:relative added */
+
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.card img{
+    height:100%; /* agar card rounded h to image ki edges bhi rounded  ho jaegi */
+    width:100%;
+
+    /* width :100% racc to its parent which is card which has height 32% so its height will be 32% */
+
+    filter: grayscale(100%);
+    box-shadow: 0 0 20px #333;
+
+    /* isse images gray hojaengi */ 
+    object-fit:cover;
+}
+
+/* margin: top/bottom left/right */
+
+.card:hover{
+    transform: scale(1.03);
+
+    filter:drop-shadow(0 0 10px #333);
+    transition:0.5s;
+    /* filter:grayscale(0%);  here it not works */
+
+    /* filter: drop-shadow(x-offset y-offset blur radius color) drop shadow se shadow drop hogi */
+
+}
+
+.card img:hover{
+    filter:grayscale(0%);  
+    /* jo hmne image pe lgaya tha filter of grayscale vo 0 karna h to retain image's color */
+}
+
+.card figcaption{
+    position:absolute;  /* for overlapping on 0 */
+    bottom:0;
+    left:0;
+    padding:25px;
+    width:100%;   /* card k acc dimensions */
+    height:20%;
+    font-size:16px;
+    font-weight:500;
+    color:#fff;
+    opacity:0;  /* transparency full text not visisble */
+    border-radius:0 0 10px 10px;
+    background:linear-gradient(0 deg,rgba(0,0,0,0.5) 0% ,rgba(255,255,255)); /* botton to top gradient */
+    transition:0.5s; 
+}
+
+.card:hover figcaption{
+    opacity:1;  /* text now vsiisble on hover */
+    transform:scale(1.03); /* increase size of text */
+}
